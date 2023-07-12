@@ -6,14 +6,13 @@ Bureaucrat::Bureaucrat() : _name("")
     std::cout << "Default Constructor called for Bureaucrat" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name) //anel
+Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name)
 {
     if(grade > 150)
         throw GradeTooLowException();
     else if (grade < 1)
       throw GradeTooHighException();  
     this->_grade = grade;
-
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj):_name(obj._name)
@@ -69,6 +68,23 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
     return "Grade is too low";
 } 
+
+void Bureaucrat::signForm(AForm &form)
+{
+    try
+    {
+        form.beSigned(*this);
+        std::cout << "'" << this->getName() << "'" << " signed to " << form.getName() << std::endl;
+    }
+    catch(AForm::GradeTooLowException& e)
+    {
+        std::cout << "!!#" << this->getName() << "!!#"
+        << " couldn't sign to "
+        << form.getName()
+        << " because " << e.what()
+        << std::endl;
+    }
+}
 
 std::ostream& operator<<(std::ostream& cout, const Bureaucrat& obj)
 {

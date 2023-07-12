@@ -1,11 +1,11 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form() : _name("") ,_isSigned(false), _reqSignIt(1),_reqExequteIt(150)
+AForm::AForm() : _name("") ,_isSigned(false), _reqSignIt(1),_reqExequteIt(150)
 {
 
 }
 
-Form::Form(std::string name,int sign,int exequte) : _name(name),_reqSignIt(sign),_reqExequteIt(exequte)
+AForm::AForm(std::string name,int sign,int exequte) : _name(name),_reqSignIt(sign),_reqExequteIt(exequte)
 {
     if(sign < 1 || exequte < 1)
     {
@@ -17,12 +17,12 @@ Form::Form(std::string name,int sign,int exequte) : _name(name),_reqSignIt(sign)
     }
 }
 
-Form::Form(const Form &obj) : _name(obj._name) ,_isSigned(obj._isSigned), _reqSignIt(obj._reqSignIt),_reqExequteIt(obj._reqExequteIt)
+AForm::AForm(const AForm &obj) : _name(obj._name) ,_isSigned(obj._isSigned), _reqSignIt(obj._reqSignIt),_reqExequteIt(obj._reqExequteIt)
 {
 
 }
 
-Form & Form::operator=(const Form &obj)
+AForm & AForm::operator=(const AForm &obj)
 {
     if(this != &obj)
     {
@@ -31,39 +31,44 @@ Form & Form::operator=(const Form &obj)
     return *this;
 }
 
-const std::string &Form::getName() const
+const std::string &AForm::getName() const
 {
     return _name;
 }
 
-const int &Form::getReqExequteIt() const
+const int &AForm::getReqExequteIt() const
 {
     return _reqExequteIt;
 }
 
-const int &Form::getReqSignIt() const
+const int &AForm::getReqSignIt() const
 {
     return _reqSignIt;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 
 }
 
 
 
-const char* Form::GradeTooHighException::what() const throw()
+const char* AForm::GradeTooHighException::what() const throw()
 {
     return "Grade is too high" ;
 }
 
-const char* Form::GradeTooLowException::what() const throw()
+const char* AForm::GradeTooLowException::what() const throw()
 {
     return "Grade is too low";
 }
 
-void Form::beSigned(Bureaucrat &obj)//anel
+const char* AForm::SignedSuccessException::what() const throw()
+{
+    return "The form isn't signed!";
+}
+
+void AForm::beSigned(Bureaucrat &obj)//anel
 {
     if(obj.getGrade() > this-> getReqSignIt())
         throw GradeTooLowException();
@@ -75,12 +80,12 @@ void Form::beSigned(Bureaucrat &obj)//anel
 
 }
 
-bool Form::getIsSigned() const
+bool AForm::getIsSigned() const
 {
     return _isSigned;
 }
 
-std::ostream& operator<<(std::ostream& cout, const Form& obj)
+std::ostream& operator<<(std::ostream& cout, const AForm& obj)
 {
     cout << "Forms name is " << obj.getName()
     << " reqSignIt is " << obj.getReqSignIt()
