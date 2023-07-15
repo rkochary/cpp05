@@ -7,6 +7,7 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm",145,137)
 {
+    std::cout << "Shrubbery Constructor" <<std::endl;
     _target = target;
 }
 

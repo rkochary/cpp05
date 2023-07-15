@@ -1,4 +1,4 @@
-NAME		= ABCform
+NAME		= Intern
 
 SRCS		= $(wildcard *.cpp)
 

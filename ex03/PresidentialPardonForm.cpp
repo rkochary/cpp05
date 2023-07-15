@@ -7,6 +7,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm",25,5)
 {
+    std::cout << "Presidental Constructor" <<std::endl;
     _target = target;
 }
 
